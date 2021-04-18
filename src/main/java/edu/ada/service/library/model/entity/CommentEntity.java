@@ -3,9 +3,7 @@ package edu.ada.service.library.model.entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @NoArgsConstructor
@@ -13,14 +11,15 @@ import java.util.List;
 @Data
 public class CommentEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
 
     private String book_ext_id;
     private String comment_author_name;
     private String comment_content;
 
-    @OneToMany(mappedBy = "replies")
-    private List<CommentEntity> replies;
+//    @OneToMany(mappedBy = "replies")
+//    private List<CommentEntity> replies;
 
     public String getId() {
         return id;
