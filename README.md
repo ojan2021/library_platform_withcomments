@@ -7,7 +7,7 @@ https://pastebin.com/nWL3wJUT
 ### Endpoint for Register:
 * Use POST method
 ```sh
-/auth/login
+/auth/register
 ```
 - In Headers part, Content-Type should be application/json.
 #### In Body:
