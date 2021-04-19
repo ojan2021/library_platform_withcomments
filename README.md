@@ -80,3 +80,8 @@ search/pickedup_books
 ```sh
 search/comment
 ```
+#### Search by id:
+- BOOK_ID should be the ID of the book that you want to get.
+```sh
+search/BOOK_ID
+```
