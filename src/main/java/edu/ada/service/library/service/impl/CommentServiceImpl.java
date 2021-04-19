@@ -21,7 +21,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<CommentModel> getCommentByBookExtId(long id) {
 
-        Optional<List<CommentEntity>> result = commentRepository.findAllByBook_ext_id(id);
+        Optional<List<CommentEntity>> result = commentRepository.findAllByBookExtId(id);
         List<CommentModel> comments = new ArrayList<>(1);
         if(!result.isPresent())
             return comments;
@@ -33,5 +33,11 @@ public class CommentServiceImpl implements CommentService {
         }
 
         return comments;
+    }
+
+    @Override
+    public void newComment(Long bookExtId, String comment_author_name, String comment_content) {
+        CommentEntity commentEntity = new CommentEntity(bookExtId, comment_author_name, comment_content);
+        commentRepository.save(commentEntity);
     }
 }

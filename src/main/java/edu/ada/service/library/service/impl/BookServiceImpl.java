@@ -73,7 +73,9 @@ public class BookServiceImpl implements BookService {
     @Override
     public BookModel searchById(long book_id) {
         Optional<BookEntity> book = bookRepository.findById(book_id);
-        BookModel bookModel = new BookModel();
+        if(!book.isPresent())
+            return null;
+        BookModel bookModel = new BookModel(book.get());
         bookModel.setComments(commentService.getCommentByBookExtId(book_id));
 
         return bookModel;

@@ -14,4 +14,5 @@ public interface BookOperationsWS {
     ResponseEntity searchByAuthor(String author);
     ResponseEntity getBookByID(long book_id);
     ResponseEntity listMetaData();
+    ResponseEntity newComment(String token, Long book_id, String comment);
 }

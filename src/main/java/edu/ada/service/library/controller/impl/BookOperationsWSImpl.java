@@ -5,6 +5,7 @@ import edu.ada.service.library.model.dto.BookModel;
 import edu.ada.service.library.model.entity.BookEntity;
 import edu.ada.service.library.security.jwt.JwtUtils;
 import edu.ada.service.library.service.BookService;
+import edu.ada.service.library.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,10 @@ public class BookOperationsWSImpl implements BookOperationsWS {
     @Autowired
     @Qualifier(value = "BookServiceImpl")
     private BookService bookService;
+
+    @Autowired
+    @Qualifier(value = "CommentServiceImpl")
+    private CommentService commentService;
 
     @Autowired
     private JwtUtils jwtUtils;
@@ -117,6 +122,14 @@ public class BookOperationsWSImpl implements BookOperationsWS {
         } else{
             return ResponseEntity.notFound().build();
         }
+    }
 
+    @Override
+    @PostMapping("/comment")
+    public ResponseEntity newComment(@RequestHeader("Authorization") String token,
+                                     @RequestHeader("book_id") Long book_id,
+                                     @RequestHeader("comment") String comment){
+        commentService.newComment(book_id,jwtUtils.getUserNameFromJwtToken(token),comment);
+        return ResponseEntity.ok("Commented successfully");
     }
 }

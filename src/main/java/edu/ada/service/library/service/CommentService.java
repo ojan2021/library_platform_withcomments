@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface CommentService {
     List<CommentModel> getCommentByBookExtId(long id);
+
+    void newComment(Long bookExtId, String comment_author_name, String comment_content);
 }
